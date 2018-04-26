@@ -27,7 +27,7 @@ export declare class OpenSslHelper {
     private _error;
     constructor(options?: OpenSslOptions);
     createSelfSignedCertificate(name: string, cname: string, path: string, alt_names?: string[]): Promise<void>;
-    getOpenSsl(): Promise<string>;
+    getOpenSsl(path: string): Promise<string>;
     buildConfig(name: string, cname: string, path: string, alt_names?: string[]): void;
     private getIpAddresses();
 }

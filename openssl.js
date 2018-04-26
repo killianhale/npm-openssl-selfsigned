@@ -86,7 +86,7 @@ class OpenSslHelper {
             this._log(`\nCreating self-signed cert for ${cname}...`);
         }
         return new Promise((resolve, reject) => {
-            this.getOpenSsl()
+            this.getOpenSsl(path)
                 .then((openssl => {
                 this.buildConfig(name, cname, path, alt_names);
                 if (!this._options.Summerize) {
@@ -109,13 +109,13 @@ class OpenSslHelper {
                 .catch(reject);
         });
     }
-    getOpenSsl() {
+    getOpenSsl(path) {
         return new Promise((resolve, reject) => {
             if (process.platform != 'win32') {
                 resolve('openssl');
                 return;
             }
-            let libDir = `${__dirname}/lib/openssl`;
+            let libDir = `${path}/lib/openssl`;
             let exePath = `${libDir}/openssl.exe`;
             if (fs.existsSync(exePath)) {
                 resolve(exePath);
@@ -124,9 +124,9 @@ class OpenSslHelper {
             if (!this._options.Summerize) {
                 this._log('\tDownloading openssl...');
             }
-            download('https://indy.fulgan.com/SSL/openssl-1.0.2n-x64_86-win64.zip', __dirname, { filename: 'openssl.zip' })
+            download('https://indy.fulgan.com/SSL/openssl-1.0.2n-x64_86-win64.zip', path, { filename: 'openssl.zip' })
                 .then(() => {
-                let zipFile = `${__dirname}/openssl.zip`;
+                let zipFile = `${path}/openssl.zip`;
                 $extract('openssl.zip', { dir: libDir })
                     .then(() => {
                     fs.removeSync(zipFile);
