@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { OpenSslHelper, OpenSslOptions } from './openssl';
 import { CliHelper } from './cli-helper';
 
