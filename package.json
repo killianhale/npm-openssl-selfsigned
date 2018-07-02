@@ -1,6 +1,6 @@
 {
   "name": "openssl_selfsigned",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "to be updated",
   "main": "bin/bin.js",
   "bin": {
