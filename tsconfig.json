@@ -7,10 +7,11 @@
     "sourceMap": true,
     "strict": true,
     "moduleResolution": "node",
-    "baseUrl": "."
+    "outDir": "bin"
   },
   "exclude": [
     "node_modules",
-    "jspm_packages"
+    "jspm_packages",
+    "bin"
   ]
 }

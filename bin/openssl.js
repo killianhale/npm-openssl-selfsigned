@@ -32,20 +32,11 @@ class OpenSslOptions {
     get IsDebug() {
         return this._isDebug;
     }
-    set IsDebug(value) {
-        this._isDebug = value;
-    }
     get NoWarnings() {
         return this._noWarnings;
     }
-    set NoWarnings(value) {
-        this._noWarnings = value;
-    }
     get Summerize() {
         return this._summarize;
-    }
-    set Summerize(value) {
-        this._summarize = value;
     }
     get DebugFunction() {
         return this._debugFunction;
@@ -104,7 +95,10 @@ class OpenSslHelper {
                     }
                     resolve();
                 })
-                    .catch(reject);
+                    .catch((error) => {
+                    this._error(error);
+                    reject(error);
+                });
             }))
                 .catch(reject);
         });
@@ -162,7 +156,7 @@ class OpenSslHelper {
             else {
                 this._warn('\t\tCity is not specified in package.json!');
             }
-            if ($pkg.sslDomain.orginization != undefined) {
+            if ($pkg.sslDomain.organization != undefined) {
                 dn_parts.push(`O = ${$pkg.sslDomain.organization}`);
             }
             else {
@@ -182,7 +176,7 @@ class OpenSslHelper {
             }
         }
         else {
-            this._warn('\nNo SSL settings found in package.json! Please run \'self-signed-cert init\'...\n');
+            this._warn('\nNo SSL settings found in package.json!\n');
         }
         dn_parts.push(`CN = ${cname}`);
         if (alt_names == undefined || alt_names.length == 0) {

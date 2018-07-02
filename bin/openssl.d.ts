@@ -5,11 +5,11 @@ export interface MessageOutputFunction {
 export declare class OpenSslOptions {
     constructor(isDebug?: boolean, summarize?: boolean, noWarnings?: boolean);
     private _isDebug;
-    IsDebug: boolean;
+    readonly IsDebug: boolean;
     private _noWarnings;
-    NoWarnings: boolean;
+    readonly NoWarnings: boolean;
     private _summarize;
-    Summerize: boolean;
+    readonly Summerize: boolean;
     private _debugFunction;
     DebugFunction: MessageOutputFunction;
     private _logFunction;

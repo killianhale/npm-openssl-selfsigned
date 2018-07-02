@@ -47,24 +47,15 @@ export class OpenSslOptions {
     public get IsDebug(): boolean {
         return this._isDebug;
     }
-    public set IsDebug(value: boolean) {
-        this._isDebug = value;
-    }
 
     private _noWarnings: boolean;
     public get NoWarnings(): boolean {
         return this._noWarnings;
     }
-    public set NoWarnings(value: boolean) {
-        this._noWarnings = value;
-    }
 
     private _summarize: boolean;
     public get Summerize(): boolean {
         return this._summarize;
-    }
-    public set Summerize(value: boolean) {
-        this._summarize = value;
     }
 
     private _debugFunction: MessageOutputFunction;
@@ -146,7 +137,11 @@ export class OpenSslHelper {
 
                             resolve()
                         })
-                        .catch(reject);
+                        .catch((error) => {
+                            this._error(error);
+                            
+                            reject(error);
+                        });
                 }))
                 .catch(reject);
         });
@@ -217,7 +212,7 @@ export class OpenSslHelper {
                 this._warn('\t\tCity is not specified in package.json!');
             }
 
-            if ($pkg.sslDomain.orginization != undefined) {
+            if ($pkg.sslDomain.organization != undefined) {
                 dn_parts.push(`O = ${$pkg.sslDomain.organization}`);
             } else {
                 this._warn('\t\tOrganization is not specified in package.json!');
@@ -235,7 +230,7 @@ export class OpenSslHelper {
                 this._warn('\t\tEmail Address is not specified in package.json!');
             }
         } else {
-            this._warn('\nNo SSL settings found in package.json! Please run \'self-signed-cert init\'...\n');
+            this._warn('\nNo SSL settings found in package.json!\n');
         }
 
         dn_parts.push(`CN = ${cname}`);

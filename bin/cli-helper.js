@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander = require("commander");
 const openssl_1 = require("./openssl");
-var $pkg = require('./package.json');
+var $pkg = require('../package.json');
 var $ssl = new openssl_1.OpenSslHelper();
 class CliHelper {
     constructor() {

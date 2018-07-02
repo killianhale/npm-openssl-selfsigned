@@ -3,7 +3,7 @@ import * as _ from 'underscore'
 
 import { OpenSslHelper, OpenSslOptions } from './openssl';
 
-var $pkg = require('./package.json');
+var $pkg = require('../package.json');
 
 var $ssl = new OpenSslHelper();
 

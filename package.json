@@ -2,12 +2,12 @@
   "name": "openssl_selfsigned",
   "version": "0.0.3",
   "description": "to be updated",
-  "main": "bin.js",
+  "main": "bin/bin.js",
   "bin": {
-    "self-signed-cert": "./bin.js"
+    "self-signed-cert": "./bin/bin.js"
   },
   "scripts": {
-    "test": "ts-node ./bin.ts create -d --name=test --cname=test.com --path=temp --alt-names=test.local,testing.com"
+    "compile": "tsc --listEmittedFiles"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,6 @@
     "@types/promise": "^7.1.30",
     "@types/underscore": "^1.8.8",
     "colors": "^1.2.1",
-    "ts-node": "^5.0.1",
     "typescript": "^2.7.2"
   }
 }
